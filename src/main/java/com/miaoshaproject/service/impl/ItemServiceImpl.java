@@ -21,6 +21,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * @Auther: junruigong
@@ -58,7 +60,7 @@ public class ItemServiceImpl implements ItemService {
         }
 
         ItemStockDO itemStockDO = new ItemStockDO();
-        itemStockDO.setId(itemModel.getId());
+        itemStockDO.setItemId(itemModel.getId());
         itemStockDO.setStock(itemModel.getStock());
         return itemStockDO;
     }
@@ -68,8 +70,7 @@ public class ItemServiceImpl implements ItemService {
     public ItemModel createItem(ItemModel itemModel) throws BusinessException {
 
         // 校验入参
-        ValidationResult validationResult =
-                validator.validate(itemModel);
+        ValidationResult validationResult = validator.validate(itemModel);
         if (validationResult.isHasErrors()) {
             throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR, validationResult.getErrMsg());
         }
@@ -88,8 +89,15 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public List<ItemModel> listItem() {
-        return null;
+
+        List<ItemDO> itemDOList = itemDOMapper.listItem();
+
+        return itemDOList.stream().map(itemDO -> {
+            ItemStockDO itemStockDO = itemStockDOMapper.selectByItemId(itemDO.getId());
+            return this.convertModelFromDataObject(itemDO, itemStockDO);
+        }).collect(Collectors.toList());
     }
+
 
     @Override
     public ItemModel getItemById(Integer id) {
