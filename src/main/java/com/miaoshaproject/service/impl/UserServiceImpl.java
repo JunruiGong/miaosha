@@ -81,7 +81,6 @@ public class UserServiceImpl implements UserService {
         userPasswordDOMapper.insertSelective(userPasswordDO);
 
         return;
-
     }
 
     @Override
