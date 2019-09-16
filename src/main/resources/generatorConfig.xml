@@ -41,7 +41,18 @@
 
         <!--<table tableName="user_password" domainObjectName="UserPasswordDO"/>-->
 
-        <table tableName="item" domainObjectName="ItemDO"
+        <!--<table tableName="item" domainObjectName="ItemDO"-->
+               <!--enableCountByExample="false"-->
+               <!--enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false"-->
+               <!--enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false">-->
+
+        <!--</table>-->
+
+        <!--<table tableName="item_stock" domainObjectName="ItemStockDO"/>-->
+
+        <table tableName="order_info" domainObjectName="OrderDO"
                enableCountByExample="false"
                enableUpdateByExample="false"
                enableDeleteByExample="false"
@@ -49,8 +60,6 @@
                selectByExampleQueryId="false">
 
         </table>
-
-        <table tableName="item_stock" domainObjectName="ItemStockDO"/>
 
     </context>
 </generatorConfiguration>
