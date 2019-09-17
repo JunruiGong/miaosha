@@ -14,7 +14,13 @@ public enum EmBusinessError implements CommonError {
     UNKNOWN_ERROR(10002,"未知错误"),
 
     USER_NOT_EXIST(200001, "用户不存在"),
-    USER_LOGIN_FAIL(200002, "手机号或密码不正确")
+    USER_LOGIN_FAIL(200002, "手机号或密码不正确"),
+    NO_LOGIN(300003, "用户未登陆"),
+
+
+    STOCK_NOT_ENOUGH(300001, "库存不足")
+
+
 
 
     ;

@@ -3,6 +3,7 @@ package com.miaoshaproject.dao;
 import com.miaoshaproject.dataobject.ItemDO;
 import com.miaoshaproject.dataobject.ItemStockDO;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -61,4 +62,6 @@ public interface ItemStockDOMapper {
      * @mbg.generated Sat Sep 14 21:13:03 CDT 2019
      */
     int updateByPrimaryKey(ItemStockDO record);
+
+    int decreaseStock(@Param("itemId") Integer itemId, @Param("amount") Integer amount);
 }

@@ -38,7 +38,6 @@ public class ItemController extends BaseController {
                                        @RequestParam(name = "stock") Integer stock,
                                        @RequestParam(name = "imgUrl") String imgUrl) throws BusinessException {
         ItemModel itemModel = new ItemModel();
-
         itemModel.setTitle(title);
         itemModel.setStock(stock);
         itemModel.setPrice(price);
