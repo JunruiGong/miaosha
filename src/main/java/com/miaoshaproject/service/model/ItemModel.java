@@ -22,6 +22,9 @@ public class ItemModel {
     @NotBlank(message = "商品名称不能为空")
     private String title;
 
+    // 不为空，表示其还具有未结束的秒杀活动
+    private PromoModel promoModel;
+
     @NotNull(message = "商品价格不能为空")
     @Min(value = 0, message = "商品价格必须大于0")
     private BigDecimal price;

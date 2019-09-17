@@ -8,7 +8,9 @@ import com.miaoshaproject.dataobject.UserDO;
 import com.miaoshaproject.error.BusinessException;
 import com.miaoshaproject.error.EmBusinessError;
 import com.miaoshaproject.service.ItemService;
+import com.miaoshaproject.service.PromoService;
 import com.miaoshaproject.service.model.ItemModel;
+import com.miaoshaproject.service.model.PromoModel;
 import com.miaoshaproject.validator.ValidationResult;
 import com.miaoshaproject.validator.ValidatorImpl;
 import com.sun.org.apache.xml.internal.security.keys.keyresolver.implementations.PrivateKeyResolver;
@@ -41,6 +43,9 @@ public class ItemServiceImpl implements ItemService {
 
     @Autowired
     private ItemStockDOMapper itemStockDOMapper;
+
+    @Autowired
+    private PromoService promoService;
 
     private ItemDO convertItemDOFromItemModel(ItemModel itemModel) {
         if (itemModel == null) {
@@ -110,7 +115,16 @@ public class ItemServiceImpl implements ItemService {
         ItemStockDO itemStockDO = itemStockDOMapper.selectByItemId(itemDO.getId());
 
         // 将dataobject->model
-        return convertModelFromDataObject(itemDO, itemStockDO);
+        ItemModel itemModel = convertModelFromDataObject(itemDO, itemStockDO);
+
+        // 获取活动信息
+        PromoModel promoModel = promoService.getPromoByItemId(itemModel.getId());
+
+        if (promoModel != null && promoModel.getStatus() != 3) {
+            itemModel.setPromoModel(promoModel);
+        }
+
+        return itemModel;
     }
 
     @Override
