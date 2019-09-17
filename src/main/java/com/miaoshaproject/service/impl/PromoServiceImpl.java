@@ -7,6 +7,7 @@ import com.miaoshaproject.service.model.PromoModel;
 import org.joda.time.DateTime;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 
@@ -15,6 +16,7 @@ import java.math.BigDecimal;
  * @Date: 9/16/19
  * @Description: TODO
  */
+@Service
 public class PromoServiceImpl implements PromoService {
 
     @Autowired

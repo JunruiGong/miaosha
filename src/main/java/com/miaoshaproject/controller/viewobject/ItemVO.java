@@ -38,5 +38,5 @@ public class ItemVO {
 
     private Integer promoId;
 
-    private DateTime startDate;
+    private String startDate;
 }

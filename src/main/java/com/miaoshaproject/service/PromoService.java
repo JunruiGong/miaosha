@@ -8,8 +8,6 @@ import org.springframework.stereotype.Service;
  * @Date: 9/16/19
  * @Description: TODO
  */
-
-@Service
 public interface PromoService {
 
     PromoModel getPromoByItemId(Integer itemId);

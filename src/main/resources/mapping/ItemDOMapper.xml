@@ -157,7 +157,7 @@
   <update id="increaseSales" >
 
     update item
-    set sales = salses + #{amount}
+    set sales = sales + #{amount}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
